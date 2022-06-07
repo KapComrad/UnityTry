@@ -6,6 +6,8 @@ namespace Player
 {
     public class PlayerMovement : MonoBehaviour
     {
+        private PlayerInput _playerInput;
+        
         [Header("Movement")]
         [SerializeField] private float _speed = 1f;
 
@@ -27,10 +29,10 @@ namespace Player
         private Rigidbody2D _rigidbody2D;
 
         private LayerMask _groundLayer;
-        private float _InputHorizontal;
 
         private void Start()
         {
+            _playerInput = GetComponent<PlayerInput>();
             _vecGravity = new Vector2(0, -Physics2D.gravity.y);
             _rigidbody2D = GetComponent<Rigidbody2D>();
             _groundLayer = LayerMask.GetMask("Ground");
@@ -38,7 +40,7 @@ namespace Player
 
         void Update()
         {
-            CheckInput();
+            CheckJumpInput();
             GravityMultiplier();
             JumpMulpitlier();
         }
@@ -47,29 +49,21 @@ namespace Player
             Movement();
             CheckIsOnGround();
         }
-        private void CheckInput()
-        {
-            _lastGroundedTime -= Time.deltaTime;
-            _InputHorizontal = Input.GetAxis("Horizontal");
-
-            if (Input.GetButtonDown("Jump"))
+        private void CheckJumpInput()
+        {   
+            if (_playerInput.JumpInputDown)
             {
                 Jump();
             }
-            if (Input.GetButtonUp("Jump"))
+            if (_playerInput.JumpInputUp)
             {
-                IsJumping = false;
-                _jumpCounter = 0;
-
-                if (_rigidbody2D.velocity.y > 0)
-                {
-                    _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, _rigidbody2D.velocity.y * 0.6f);
-                }
+                JumpEnded();
             }
         }
 
         private void CheckIsOnGround()
         {
+            _lastGroundedTime -= Time.deltaTime;
             if (IsGrounded())
             {
                 _lastGroundedTime = _jumpBufferTime;
@@ -82,7 +76,7 @@ namespace Player
 
         private void Movement()
         {
-            _rigidbody2D.velocity = new Vector2(_speed * _InputHorizontal, _rigidbody2D.velocity.y);
+            _rigidbody2D.velocity = new Vector2(_speed * _playerInput.HorizontalInput, _rigidbody2D.velocity.y);
         }
 
         /*
@@ -100,6 +94,17 @@ namespace Player
                 IsJumping = true;
                 _jumpCounter = 0;
                 _rigidbody2D.AddForce(Vector2.up * _jumpForce, ForceMode2D.Impulse);
+            }
+        }
+
+        private void JumpEnded()
+        {
+            IsJumping = false;
+            _jumpCounter = 0;
+
+            if (_rigidbody2D.velocity.y > 0)
+            {
+                _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, _rigidbody2D.velocity.y * 0.6f);
             }
         }
 
