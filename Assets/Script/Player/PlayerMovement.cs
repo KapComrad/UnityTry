@@ -13,7 +13,6 @@ namespace Player
 
         [Header("Jump")]
         [SerializeField] private float _jumpForce = 10f;
-        public bool IsJumping { get; private set; }
         [SerializeField] private Vector2 _groundCheckSize = new Vector2(0.2f, 0.2f);
         [SerializeField] private float _lastGroundedTime = 0f;
         [SerializeField] private float _jumpBufferTime = 0.2f;
@@ -22,12 +21,13 @@ namespace Player
         [SerializeField] private float _fallMultiplier = 0f;
         [SerializeField] private float _jumpCounter = 0f;
         private Vector2 _vecGravity;
+        public bool IsJumping { get; private set; }
 
 
         [Header("GameObjects")]
         [SerializeField] private Transform _groundCheckPoint;
-        private Rigidbody2D _rigidbody2D;
 
+        private Rigidbody2D _rigidbody2D;
         private LayerMask _groundLayer;
 
         private void Start()
@@ -78,13 +78,6 @@ namespace Player
         {
             _rigidbody2D.velocity = new Vector2(_speed * _playerInput.HorizontalInput, _rigidbody2D.velocity.y);
         }
-
-        /*
-        private void OnDrawGizmos()
-        {
-            Gizmos.DrawWireCube(_groundCheckPoint.position, _groundCheckSize);
-        }
-        */
 
         private void Jump()
         {

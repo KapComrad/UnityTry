@@ -4,44 +4,49 @@ using UnityEngine;
 
 public class SlugMovement : MonoBehaviour
 {
-    [SerializeField] private Rigidbody2D _rigidbody2D;
-    [SerializeField] private float _speed = -10f;
-    [SerializeField] private Transform _wallCheckPoint;
-    [SerializeField] private float _wallCheckLength = 0.2f;
+    private Rigidbody2D _rigidbody2D;
+    private Vector3 _localScaleVector;
+
+    [Header("Objects and Layers")]
+    [SerializeField] private Transform _raycastCheckPoint;
     [SerializeField] private LayerMask _groundLayer;
-    [SerializeField] private bool _isRightRotation;
-    // Start is called before the first frame update
+
+    [Header("Float variables")]
+    [SerializeField] private float _speed = -40f;
+    [SerializeField] private float _wallCheckLength = 0.1f;
+    [SerializeField] private float _groundCheckLength = 0.2f;
     void Start()
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
+        _localScaleVector = transform.localScale;
     }
 
-    // Update is called once per frame
     void Update()
     {
         _rigidbody2D.velocity = new Vector2(_speed * Time.deltaTime, _rigidbody2D.velocity.y);
-        if (IsWallOnRoad() && !_isRightRotation)
+        if (IsWallOnRoad() || !IsRoadEnded())
         {
-            transform.localScale = new Vector3(-1, 1, 1);
+            _localScaleVector.x = -_localScaleVector.x;
+            transform.localScale = _localScaleVector;
             _speed = -_speed;
-            _isRightRotation = true;
-        }
-        else if (IsWallOnRoad() && _isRightRotation)
-        {
-            transform.localScale = new Vector3(1, 1, 1);
-            _speed = -_speed;
-            _isRightRotation = false;
+            _wallCheckLength = -_wallCheckLength;
         }
         
     }
 
     private bool IsWallOnRoad()
     {
-        return Physics2D.Raycast(_wallCheckPoint.position,Vector2.left, _wallCheckLength,_groundLayer);
+        return Physics2D.Raycast(_raycastCheckPoint.position,Vector2.left, _wallCheckLength,_groundLayer);
+    }
+
+    private bool IsRoadEnded()
+    {
+        return Physics2D.Raycast(_raycastCheckPoint.position, Vector2.down, _groundCheckLength, _groundLayer);
     }
 
     private void OnDrawGizmos()
     {
-        Gizmos.DrawRay(_wallCheckPoint.position, Vector3.left);
+        Gizmos.DrawRay(_raycastCheckPoint.position, new Vector3(-_wallCheckLength,0,0));
+        Gizmos.DrawRay(_raycastCheckPoint.position, new Vector3(0,-_groundCheckLength,0));
     }
 }
