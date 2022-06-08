@@ -1,15 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 namespace Player
 {
     public class PlayerMovement : MonoBehaviour
     {
+        public static Action<int> inputAction;
+
         private PlayerInput _playerInput;
         
         [Header("Movement")]
         [SerializeField] private float _speed = 1f;
+        private int _jumpSoundInt = 0;
 
         [Header("Jump")]
         [SerializeField] private float _jumpForce = 10f;
@@ -83,6 +87,7 @@ namespace Player
         {
             if (_lastGroundedTime > 0 && IsGrounded())
             {
+                inputAction?.Invoke(_jumpSoundInt);
                 _lastGroundedTime = 0f;
                 IsJumping = true;
                 _jumpCounter = 0;
