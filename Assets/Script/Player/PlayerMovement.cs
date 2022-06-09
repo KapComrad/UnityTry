@@ -81,6 +81,7 @@ namespace Player
         private void Movement()
         {
             _rigidbody2D.velocity = new Vector2(_speed * _playerInput.HorizontalInput, _rigidbody2D.velocity.y);
+
         }
 
         private void Jump()

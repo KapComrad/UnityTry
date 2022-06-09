@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Player;
 
@@ -18,6 +16,7 @@ public class PlayerAnimation : MonoBehaviour
         _transform = GetComponent<Transform>();
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _playerMovement = GetComponent<PlayerMovement>();
+
     }
     void Update()
     {

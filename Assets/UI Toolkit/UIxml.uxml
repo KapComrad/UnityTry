@@ -1,0 +1,12 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/Test.uss?fileID=7433441132597879392&amp;guid=bdee4a0eb1c03624da1b4fc4d6210ad1&amp;type=3#Test" />
+    <ui:VisualElement style="height: 157px;">
+        <ui:Label tabindex="-1" text="Label" display-tooltip-when-elided="true" />
+    </ui:VisualElement>
+    <ui:GroupBox name="ButtonBox" style="height: 442px; position: absolute; left: 0; top: 0; right: 0; bottom: 0;">
+        <ui:Button tabindex="-1" text="Resume" display-tooltip-when-elided="true" name="ResumeButton" style="position: absolute; left: 25%; top: 35%; right: 25%; bottom: 60%;" />
+        <ui:Button tabindex="-1" text="Options" display-tooltip-when-elided="true" name="OptionsButton" style="position: absolute; left: 25%; top: 40%; right: 25%; bottom: 55%;" />
+        <ui:Button tabindex="-1" text="Exit to main menu" display-tooltip-when-elided="true" name="ExitToMainMenuButton" style="position: absolute; left: 25%; top: 45%; right: 25%; bottom: 50%;" />
+        <ui:Button tabindex="-1" text="Exit to Dekstop" display-tooltip-when-elided="true" name="ExitToDekstopButton" style="position: absolute; left: 25%; top: 50%; right: 25%; bottom: 45%;" />
+    </ui:GroupBox>
+</ui:UXML>
