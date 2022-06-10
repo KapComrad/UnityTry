@@ -3,19 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using Player;
 
-public class CherryPickUp : MonoBehaviour, ICollectable
+public class ItemPickUp : MonoBehaviour, ICollectable
 {
     public void PickUp()
     {
-        throw new System.NotImplementedException();
+        PlayerMovement.inputAction?.Invoke(1);
+        Destroy(gameObject);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Player")
         {
-            PlayerMovement.inputAction?.Invoke(1);
-            Destroy(gameObject);
+            PickUp();
         }
     }
 }

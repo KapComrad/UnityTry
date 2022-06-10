@@ -22,9 +22,7 @@ namespace Player
 
         private void PlaySound(int soundNumber)
         {
-            _audioSource.clip = _audioClips[soundNumber];
-            _audioSource.Play();
-
+            _audioSource.PlayOneShot(_audioClips[soundNumber]);
         }
     }
 

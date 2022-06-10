@@ -10,14 +10,21 @@ public class SlugMovement : MonoBehaviour
     [Header("Objects and Layers")]
     [SerializeField] private Transform _raycastCheckPoint;
     [SerializeField] private LayerMask _groundLayer;
+    [SerializeField] private ParticleSystem _particleSystem;
 
     [Header("Float variables")]
     [SerializeField] private float _speed = -40f;
     [SerializeField] private float _wallCheckLength = 0.1f;
     [SerializeField] private float _groundCheckLength = 0.2f;
-    void Start()
+
+    private void Awake()
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
+        _particleSystem = GetComponentInChildren<ParticleSystem>();
+    }
+    void Start()
+    {
+        _particleSystem.Play();
         _localScaleVector = transform.localScale;
     }
 
