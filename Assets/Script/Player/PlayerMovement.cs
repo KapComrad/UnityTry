@@ -7,9 +7,8 @@ namespace Player
 {
     public class PlayerMovement : MonoBehaviour
     {
-        public static Action<int> inputAction;
-
         private PlayerInput _playerInput;
+        private PlayerSounds _playerSounds;
         
         [Header("Movement")]
         [SerializeField] private float _speed = 1f;
@@ -34,6 +33,10 @@ namespace Player
         private Rigidbody2D _rigidbody2D;
         private LayerMask _groundLayer;
 
+        private void Awake()
+        {
+            _playerSounds = GetComponentInChildren<PlayerSounds>();
+        }
         private void Start()
         {
             _playerInput = GetComponent<PlayerInput>();
@@ -87,7 +90,7 @@ namespace Player
         {
             if (_lastGroundedTime > 0 && IsGrounded())
             {
-                inputAction?.Invoke(_jumpSoundInt);
+                _playerSounds.PlaySound(0);
                 _lastGroundedTime = 0f;
                 IsJumping = true;
                 _jumpCounter = 0;

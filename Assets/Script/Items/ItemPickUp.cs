@@ -7,7 +7,6 @@ public class ItemPickUp : MonoBehaviour, ICollectable
 {
     public void PickUp()
     {
-        PlayerMovement.inputAction?.Invoke(1);
         Destroy(gameObject);
     }
 
@@ -15,6 +14,8 @@ public class ItemPickUp : MonoBehaviour, ICollectable
     {
         if (collision.tag == "Player")
         {
+            PlayerSounds playerSounds = collision.GetComponentInChildren<PlayerSounds>();
+            playerSounds.PlaySound(1);
             PickUp();
         }
     }

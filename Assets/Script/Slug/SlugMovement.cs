@@ -37,6 +37,7 @@ public class SlugMovement : MonoBehaviour
             transform.localScale = _localScaleVector;
             _speed = -_speed;
             _wallCheckLength = -_wallCheckLength;
+            _particleSystem.transform.Rotate(0, 180f, 0);
         }
         
     }
