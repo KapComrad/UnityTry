@@ -7,13 +7,14 @@ namespace Player
         public float HorizontalInput { get; private set; }
         public bool JumpInputDown { get; private set; }
         public bool JumpInputUp { get; private set; }
+        public bool Escape { get; private set; }
 
         private void Update()
         {
             HorizontalInput = Input.GetAxis("Horizontal");
             JumpInputDown = Input.GetButtonDown("Jump");
             JumpInputUp = Input.GetButtonUp("Jump");
-
+            Escape = Input.GetButtonDown("Cancel");
         }
 
     }

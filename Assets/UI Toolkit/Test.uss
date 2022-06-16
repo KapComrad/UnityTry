@@ -1,2 +1,10 @@
-.button {
+.screen {
+    flex-grow: 1;
+    align-items: center;
+}
+
+Button {
+    font-size: 24px;
+    width: 70%;
+    height: 50px;
 }
