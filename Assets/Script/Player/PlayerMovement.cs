@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using System;
+using System.Collections;
 
 namespace Player
 {
@@ -12,7 +10,6 @@ namespace Player
         
         [Header("Movement")]
         [SerializeField] private float _speed = 1f;
-        private int _jumpSoundInt = 0;
 
         [Header("Jump")]
         [SerializeField] private float _jumpForce = 10f;
@@ -25,23 +22,25 @@ namespace Player
         [SerializeField] private float _jumpCounter = 0f;
         private Vector2 _vecGravity;
         public bool IsJumping { get; private set; }
-
+        public bool IsTakingDamage;
 
         [Header("GameObjects")]
         [SerializeField] private Transform _groundCheckPoint;
 
         private Rigidbody2D _rigidbody2D;
         private LayerMask _groundLayer;
+        private Vector2 _rigidbodyVelocity;
 
         private void Awake()
         {
             _playerSounds = GetComponentInChildren<PlayerSounds>();
+            _playerInput = GetComponent<PlayerInput>();
+            _rigidbody2D = GetComponent<Rigidbody2D>();
         }
         private void Start()
         {
-            _playerInput = GetComponent<PlayerInput>();
             _vecGravity = new Vector2(0, -Physics2D.gravity.y);
-            _rigidbody2D = GetComponent<Rigidbody2D>();
+            _rigidbodyVelocity = _rigidbody2D.velocity;
             _groundLayer = LayerMask.GetMask("Ground");
         }
 
@@ -83,8 +82,12 @@ namespace Player
 
         private void Movement()
         {
-            _rigidbody2D.velocity = new Vector2(_speed * _playerInput.HorizontalInput, _rigidbody2D.velocity.y);
+            if (!IsTakingDamage)
+                _rigidbody2D.velocity = new Vector2(_speed * _playerInput.HorizontalInput, _rigidbody2D.velocity.y);
         }
+
+
+        
 
         private void Jump()
         {
@@ -103,9 +106,9 @@ namespace Player
             IsJumping = false;
             _jumpCounter = 0;
 
-            if (_rigidbody2D.velocity.y > 0)
+            if (_rigidbodyVelocity.y > 0)
             {
-                _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, _rigidbody2D.velocity.y * 0.6f);
+                _rigidbodyVelocity = new Vector2(_rigidbodyVelocity.x, _rigidbodyVelocity.y * 0.6f);
             }
         }
 
@@ -113,7 +116,7 @@ namespace Player
         {
             if (_rigidbody2D.velocity.y < 0.1f)
             {
-                _rigidbody2D.velocity -= _vecGravity * _fallMultiplier * Time.deltaTime;
+                _rigidbody2D.velocity -= _vecGravity * (_fallMultiplier * Time.deltaTime);
             }
         }
 
@@ -132,7 +135,7 @@ namespace Player
                     currentJumpM = _jumpMultiplier * (1 - t);
                 }
 
-                _rigidbody2D.velocity += _vecGravity * currentJumpM * Time.deltaTime;
+                _rigidbody2D.velocity += _vecGravity * (currentJumpM * Time.deltaTime);
             }
         }
     }

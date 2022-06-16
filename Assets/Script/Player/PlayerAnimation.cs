@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Threading.Tasks;
 using Player;
 
 public class PlayerAnimation : MonoBehaviour
@@ -44,4 +45,14 @@ public class PlayerAnimation : MonoBehaviour
         _animator.SetFloat("JumpVelocity", _rigidbody2D.velocity.y);
         _animator.SetBool("IsGrounded", _playerMovement.IsGrounded());
     }
+
+    public async void TakeDamageAnimationPlay(float time)
+    {
+        Debug.Log("Entered");
+        _animator.SetBool("TakedDamage", true);
+        await Task.Delay((int)(time * 1000));
+        Debug.Log("Exit");
+        _animator.SetBool("TakedDamage", false);
+    }
+
 }

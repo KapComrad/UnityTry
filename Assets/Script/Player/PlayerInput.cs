@@ -1,5 +1,4 @@
 using UnityEngine;
-using System;
 
 namespace Player
 {
@@ -14,8 +13,8 @@ namespace Player
             HorizontalInput = Input.GetAxis("Horizontal");
             JumpInputDown = Input.GetButtonDown("Jump");
             JumpInputUp = Input.GetButtonUp("Jump");
-        }
 
+        }
 
     }
 
