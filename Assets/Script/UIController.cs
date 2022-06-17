@@ -13,6 +13,8 @@ public class UIController : MonoBehaviour
     private Button _exitToMainMenuButton;
     private Button _exitToDekstopButton;
 
+    private bool _pauseMenuOpened;
+
 
     private void Awake()
     {
@@ -26,6 +28,7 @@ public class UIController : MonoBehaviour
 
         _resumeButton.clicked += ResumeButtonPressed;
         _exitToDekstopButton.clicked += ExitButtonPressed;
+        _root.style.display = DisplayStyle.None;
     }
 
     private void Update()
@@ -37,7 +40,7 @@ public class UIController : MonoBehaviour
     {
         if (_playerInput.Escape)
         {
-            if (_document.enabled == false)
+            if (_pauseMenuOpened == false)
                 PauseGame();
             else
                 ResumeGame();
@@ -46,19 +49,20 @@ public class UIController : MonoBehaviour
 
     private void PauseGame()
     {
-        _document.enabled = true;
+        _root.style.display = DisplayStyle.Flex;
         Time.timeScale = 0;
+        _pauseMenuOpened = true;
     }
 
     private void ResumeGame()
     {
-        _document.enabled = false;
+        _root.style.display = DisplayStyle.None;
         Time.timeScale = 1;
+        _pauseMenuOpened = false;
     }
 
     private void ResumeButtonPressed()
     {
-        Debug.Log("ButtonPressed");
         ResumeGame();
     }
 

@@ -6,7 +6,7 @@
                 <ui:Button tabindex="-1" text="Resume" display-tooltip-when-elided="true" name="ResumeButton" />
                 <ui:Button tabindex="-1" text="Options" display-tooltip-when-elided="true" name="OptionsButton" />
                 <ui:Button tabindex="-1" text="Exit to main menu" display-tooltip-when-elided="true" name="ExitToMainMenuButton" />
-                <ui:Button tabindex="-1" text="Exit to Dekstop" display-tooltip-when-elided="true" name="ExitToDeksopButton" />
+                <ui:Button tabindex="-1" text="Exit to Dekstop" display-tooltip-when-elided="true" name="ExitToDekstopButton" />
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>
