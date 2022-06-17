@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 using System.Collections;
 using Player;
 
@@ -12,6 +13,8 @@ public class PlayerTakeDamage : MonoBehaviour
     [SerializeField] private float _invincibleTime = 2f;
     [SerializeField] private float _loseControlTime = 0.5f;
     private bool _isInvincible = false;
+
+    public static Action PlayerTakeDamageEvent;
 
     private void Awake()
     {
@@ -29,6 +32,8 @@ public class PlayerTakeDamage : MonoBehaviour
 
             StartCoroutine(PushTime());
             StartCoroutine(InvincibleTime());
+            PlayerStats.singleton.HealthDecrease();
+            PlayerTakeDamageEvent?.Invoke();
         }
     }
 

@@ -5,7 +5,9 @@ using Player;
 public class UIController : MonoBehaviour
 {
     [SerializeField] private PlayerInput _playerInput;
+
     private VisualElement _root;
+    private VisualElement _buttonBox;
     private UIDocument _document;
 
     private Button _resumeButton;
@@ -15,16 +17,16 @@ public class UIController : MonoBehaviour
 
     private bool _pauseMenuOpened;
 
-
     private void Awake()
     {
         _document = GetComponent<UIDocument>();
-        _root = GetComponent<UIDocument>().rootVisualElement;
+        _root = _document.rootVisualElement;
+        _buttonBox = _root.Q<VisualElement>("ButtonBox");
 
-        _resumeButton = _root.Q<Button>("ResumeButton");
-        _optionsButton = _root.Q<Button>("OptionsButton");
-        _exitToMainMenuButton = _root.Q<Button>("ExitToMainMenuButton");
-        _exitToDekstopButton = _root.Q<Button>("ExitToDekstopButton");
+        _resumeButton = _buttonBox.Q<Button>("ResumeButton");
+        _optionsButton = _buttonBox.Q<Button>("OptionsButton");
+        _exitToMainMenuButton = _buttonBox.Q<Button>("ExitToMainMenuButton");
+        _exitToDekstopButton = _buttonBox.Q<Button>("ExitToDekstopButton");
 
         _resumeButton.clicked += ResumeButtonPressed;
         _exitToDekstopButton.clicked += ExitButtonPressed;

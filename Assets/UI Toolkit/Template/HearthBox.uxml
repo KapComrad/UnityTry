@@ -1,0 +1,8 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/HearthUSS.uss?fileID=7433441132597879392&amp;guid=3364a61f125abc14f9c0271cb7e77946&amp;type=3#HearthUSS" />
+    <ui:VisualElement name="HearthBox" class="HearthClass">
+        <ui:VisualElement name="HearthBorder" style="background-image: url(&apos;project://database/Assets/Graphics/Hearts/PNG/basic/border.png?fileID=2800000&amp;guid=2669f8152ec359b4cbc63ed9474d1ab3&amp;type=3#border&apos;); width: 34px; height: 34px; align-items: center; justify-content: center;">
+            <ui:VisualElement name="HearthTexture" style="background-image: url(&apos;project://database/Assets/Graphics/Hearts/PNG/basic/heart.png?fileID=2800000&amp;guid=5b5dd36052a12414ca845060387bdf38&amp;type=3#heart&apos;); width: 34px; height: 34px; align-items: center; justify-content: center;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
