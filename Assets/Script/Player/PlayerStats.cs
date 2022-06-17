@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Player
@@ -9,6 +7,7 @@ namespace Player
         public static PlayerStats singleton { get; private set; }
 
         [SerializeField] private int _health= 3;
+        [SerializeField] private int _score = 0;
 
         public int Health
         {
@@ -41,8 +40,10 @@ namespace Player
             _health++;
         }
 
-
-
+        public void ScoreIncrease()
+        {
+            _score++;
+        }
 
     }
 }

@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UIElements;
 using System.Collections;
+using System;
 using Player;
 
 public class UIGame : MonoBehaviour
@@ -45,19 +46,26 @@ public class UIGame : MonoBehaviour
             }
         }
 
+    }
 
-
-
+    private void ChangeScoreUI()
+    {
+        var scoreNumber = _gameUIBox.Q<Label>("ScoreNumber");
+        int result = Int32.Parse(scoreNumber.text);
+        result++;
+        scoreNumber.text = result.ToString();
     }
 
     private void OnEnable()
     {
         PlayerTakeDamage.PlayerTakeDamageEvent += ChangeHealthUI;
+        GemPickUp.AddScoreEvent += ChangeScoreUI;
     }
 
     private void OnDisable()
     {
         PlayerTakeDamage.PlayerTakeDamageEvent -= ChangeHealthUI;
+        GemPickUp.AddScoreEvent += ChangeScoreUI;
     }
 
     //private void ChangeHealthUI()

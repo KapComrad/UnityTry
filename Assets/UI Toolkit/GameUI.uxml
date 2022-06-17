@@ -2,6 +2,9 @@
     <ui:VisualElement name="MainBox" style="flex-grow: 1;">
         <ui:VisualElement name="GameUIBox" style="flex-direction: row; align-items: center;">
             <ui:VisualElement name="SpaceBox" style="flex-grow: 1; align-items: auto; justify-content: flex-start;" />
+            <ui:Label tabindex="-1" text="Score" display-tooltip-when-elided="true" name="ScoreLabel" style="font-size: 32px;" />
+            <ui:VisualElement name="GemTexture" style="background-image: url(&apos;project://database/Assets/Graphics/Sunny-land-assets-files/GIF/sprites/items/gem.gif?fileID=2800000&amp;guid=a6e1de7ff862e074b9da05636efc5617&amp;type=3#gem&apos;); width: 30px; height: 26px;" />
+            <ui:Label tabindex="-1" text="0" display-tooltip-when-elided="true" name="ScoreNumber" style="font-size: 32px;" />
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>
