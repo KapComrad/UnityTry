@@ -91,7 +91,7 @@ namespace Player
 
         private void Jump()
         {
-            if (_lastGroundedTime > 0 && IsGrounded())
+            if ((_lastGroundedTime > 0 && IsGrounded()) || PlayerStats.singleton.DoubleJump)
             {
                 _playerSounds.PlaySound(0);
                 _lastGroundedTime = 0f;
@@ -114,15 +114,15 @@ namespace Player
 
         private void GravityMultiplier()
         {
-            if (_rigidbody2D.velocity.y < 0.1f)
+            if (_rigidbodyVelocity.y < 0.1f)
             {
-                _rigidbody2D.velocity -= _vecGravity * (_fallMultiplier * Time.deltaTime);
+                _rigidbodyVelocity -= _vecGravity * (_fallMultiplier * Time.deltaTime);
             }
         }
 
         private void JumpMulpitlier()
         {
-            if (_rigidbody2D.velocity.y > 0 && IsJumping)
+            if (_rigidbodyVelocity.y > 0 && IsJumping)
             {
                 _jumpCounter += Time.deltaTime;
                 if (_jumpCounter > _jumpTime) IsJumping = false;
@@ -135,7 +135,7 @@ namespace Player
                     currentJumpM = _jumpMultiplier * (1 - t);
                 }
 
-                _rigidbody2D.velocity += _vecGravity * (currentJumpM * Time.deltaTime);
+                _rigidbodyVelocity += _vecGravity * (currentJumpM * Time.deltaTime);
             }
         }
     }

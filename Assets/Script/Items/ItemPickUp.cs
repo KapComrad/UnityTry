@@ -10,13 +10,4 @@ public class ItemPickUp : MonoBehaviour, ICollectable
         Destroy(gameObject);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.tag == "Player")
-        {
-            PlayerSounds playerSounds = collision.GetComponentInChildren<PlayerSounds>();
-            playerSounds.PlaySound(1);
-            PickUp();
-        }
-    }
 }

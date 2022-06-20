@@ -17,8 +17,10 @@ public class UIGame : MonoBehaviour
         _root = _document.rootVisualElement;
         _gameUIBox = _root.Q<VisualElement>("GameUIBox");
 
+    }
+    private void Start()
+    {
         ChangeHealthUI();
-
     }
 
     private void ChangeHealthUI()
@@ -29,7 +31,7 @@ public class UIGame : MonoBehaviour
             if (_gameUIBox.ElementAt(i).name == "Hearth")
                 healthCount++;
         }
-
+        Debug.Log(PlayerStats.singleton.Health);
         if (healthCount > PlayerStats.singleton.Health)
         {
             _gameUIBox.RemoveAt(0);
@@ -51,8 +53,7 @@ public class UIGame : MonoBehaviour
     private void ChangeScoreUI()
     {
         var scoreNumber = _gameUIBox.Q<Label>("ScoreNumber");
-        int result = Int32.Parse(scoreNumber.text);
-        result++;
+        int result = PlayerStats.singleton.Score;
         scoreNumber.text = result.ToString();
     }
 
