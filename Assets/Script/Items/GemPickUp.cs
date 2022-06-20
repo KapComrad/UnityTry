@@ -10,17 +10,7 @@ public class GemPickUp : MonoBehaviour, ICollectable
     {
         PlayerStats.singleton.ScoreIncrease();
         AddScoreEvent?.Invoke();
+        Destroy(gameObject);
     }
 
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.tag == "Player")
-        {
-            PlayerSounds playerSounds = collision.GetComponentInChildren<PlayerSounds>();
-            playerSounds.PlaySound(1);
-            PickUp();
-            Destroy(gameObject);
-        }
-    }
 }

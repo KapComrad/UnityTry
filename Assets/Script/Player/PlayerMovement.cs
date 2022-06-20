@@ -20,6 +20,7 @@ namespace Player
         [SerializeField] private float _jumpMultiplier = 0f;
         [SerializeField] private float _fallMultiplier = 0f;
         [SerializeField] private float _jumpCounter = 0f;
+        [SerializeField] private int _numberOfJumps = 1;
         private Vector2 _vecGravity;
         public bool IsJumping { get; private set; }
         public bool IsTakingDamage;
@@ -70,9 +71,10 @@ namespace Player
         private void CheckIsOnGround()
         {
             _lastGroundedTime -= Time.deltaTime;
-            if (IsGrounded())
+            if (IsGrounded() && !IsJumping)
             {
                 _lastGroundedTime = _jumpBufferTime;
+                _numberOfJumps = PlayerStats.singleton.NumberOfJumps;
             }
         }
         public bool IsGrounded()
@@ -86,17 +88,15 @@ namespace Player
                 _rigidbody2D.velocity = new Vector2(_speed * _playerInput.HorizontalInput, _rigidbody2D.velocity.y);
         }
 
-
-        
-
         private void Jump()
         {
-            if ((_lastGroundedTime > 0 && IsGrounded()) || PlayerStats.singleton.DoubleJump)
+            if ((_lastGroundedTime > 0 && IsGrounded()) || _numberOfJumps > 0)
             {
                 _playerSounds.PlaySound(0);
                 _lastGroundedTime = 0f;
                 IsJumping = true;
                 _jumpCounter = 0;
+                _numberOfJumps--;
                 _rigidbody2D.AddForce(Vector2.up * _jumpForce, ForceMode2D.Impulse);
             }
         }

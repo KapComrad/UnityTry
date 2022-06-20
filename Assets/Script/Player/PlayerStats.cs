@@ -8,7 +8,7 @@ namespace Player
 
         [SerializeField] private int _health= 3;
         [SerializeField] private int _score = 0;
-        [SerializeField] private bool _doubleJump = false;
+        [SerializeField] private int _numberOfJumps = 1;
 
         public int Health
         {
@@ -22,7 +22,7 @@ namespace Player
             private set { _score = value; }
         }
 
-        public bool DoubleJump { get { return _doubleJump; } set { _doubleJump = value; } }
+        public int NumberOfJumps { get { return _numberOfJumps; } set { _numberOfJumps = value; } }
 
         private void Awake()
         {

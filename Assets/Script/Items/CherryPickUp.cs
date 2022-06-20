@@ -7,19 +7,7 @@ public class CherryPickUp : MonoBehaviour, ICollectable
 {
     public void PickUp()
     {
-        PlayerStats.singleton.DoubleJump = true;
+        PlayerStats.singleton.NumberOfJumps++;
+        Destroy(gameObject);
     }
-
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.tag == "Player")
-        {
-            PlayerSounds playerSounds = collision.GetComponentInChildren<PlayerSounds>();
-            playerSounds.PlaySound(1);
-            PickUp();
-            Destroy(gameObject);
-        }
-    }
-
 }

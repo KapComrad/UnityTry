@@ -48,10 +48,8 @@ public class PlayerAnimation : MonoBehaviour
 
     public async void TakeDamageAnimationPlay(float time)
     {
-        Debug.Log("Entered");
         _animator.SetBool("TakedDamage", true);
         await Task.Delay((int)(time * 1000));
-        Debug.Log("Exit");
         _animator.SetBool("TakedDamage", false);
     }
 
