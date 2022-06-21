@@ -1,7 +1,5 @@
 using UnityEngine;
 using UnityEngine.UIElements;
-using System.Collections;
-using System;
 using Player;
 
 public class UIGame : MonoBehaviour
@@ -31,7 +29,6 @@ public class UIGame : MonoBehaviour
             if (_gameUIBox.ElementAt(i).name == "Hearth")
                 healthCount++;
         }
-        Debug.Log(PlayerStats.singleton.Health);
         if (healthCount > PlayerStats.singleton.Health)
         {
             _gameUIBox.RemoveAt(0);

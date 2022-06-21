@@ -1,0 +1,34 @@
+.unity-progress-bar {
+}
+
+.unity-progress-bar > .unity-progress-bar__container {
+    -unity-background-image-tint-color: rgba(19, 173, 0, 255);
+}
+
+.unity-progress-bar > .unity-progress-bar__container > .unity-progress-bar__background {
+    -unity-background-image-tint-color: rgba(15, 123, 0, 255);
+    color: rgba(255, 0, 0, 255);
+}
+
+.unity-progress-bar__background > .unity-progress-bar__progress {
+    -unity-background-image-tint-color: rgba(0, 0, 0, 255);
+    color: rgba(0, 0, 0, 255);
+    width: auto;
+    height: auto;
+    background-color: rgba(0, 140, 11, 255);
+    -unity-text-outline-color: rgba(0, 0, 0, 255);
+}
+
+.unity-base-field {
+}
+
+.unity-base-field__input {
+    color: rgba(19, 188, 0, 255);
+    font-size: 24px;
+    -unity-font: url('project://database/Assets/UI%20Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=2230732570650464555&guid=d6bdda888940e0d4d82c98e6c29984ae&type=3#NotInter-Regular');
+}
+
+.unity-scroll-view {
+    background-color: rgba(0, 0, 0, 255);
+    -unity-background-image-tint-color: rgba(0, 0, 0, 255);
+}

@@ -8,6 +8,7 @@ namespace Player
         public bool JumpInputDown { get; private set; }
         public bool JumpInputUp { get; private set; }
         public bool Escape { get; private set; }
+        public bool Tab { get; set; }
 
         private void Update()
         {
@@ -15,6 +16,7 @@ namespace Player
             JumpInputDown = Input.GetButtonDown("Jump");
             JumpInputUp = Input.GetButtonUp("Jump");
             Escape = Input.GetButtonDown("Cancel");
+            Tab = Input.GetButtonDown("Tab");
         }
 
     }
